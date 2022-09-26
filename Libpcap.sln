@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{76E89245-D95F-4A21-BC36-6E6DA7788D19}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "extras", "extras", "{B178109E-DC56-48A4-B66F-94EC2286077E}"
+	ProjectSection(SolutionItems) = preProject
+		codegen.ps1 = codegen.ps1
+		global.json = global.json
+		nuget.config = nuget.config
+		Directory.Build.props = Directory.Build.props
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libpcap", "src\Libpcap\Libpcap.csproj", "{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E270C79B-CE8C-4012-93C6-57250BDA7A9F}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libpcap.Tests", "tests\Libpcap.Tests\Libpcap.Tests.csproj", "{83EF9A9D-D630-4847-8738-6A12F44A4FEB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{49F4FF76-0107-4777-B68D-8F2278F4DE78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{A56A2A0E-3EC1-4635-A773-0FB995432FC2}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B} = {76E89245-D95F-4A21-BC36-6E6DA7788D19}
+		{83EF9A9D-D630-4847-8738-6A12F44A4FEB} = {E270C79B-CE8C-4012-93C6-57250BDA7A9F}
+		{49F4FF76-0107-4777-B68D-8F2278F4DE78} = {B178109E-DC56-48A4-B66F-94EC2286077E}
+		{A56A2A0E-3EC1-4635-A773-0FB995432FC2} = {49F4FF76-0107-4777-B68D-8F2278F4DE78}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E6C9B2F-2306-43DA-8E75-EF6D15BC361B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83EF9A9D-D630-4847-8738-6A12F44A4FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83EF9A9D-D630-4847-8738-6A12F44A4FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83EF9A9D-D630-4847-8738-6A12F44A4FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83EF9A9D-D630-4847-8738-6A12F44A4FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

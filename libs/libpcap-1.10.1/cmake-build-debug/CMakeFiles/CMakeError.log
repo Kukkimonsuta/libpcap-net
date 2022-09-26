@@ -1,0 +1,354 @@
+Determining if the WINPCAP_PRODUCT_NAME exist failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_86312 && [1/2] Building C object CMakeFiles/cmTC_86312.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_86312.dir/CheckSymbolExists.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe    -o CMakeFiles/cmTC_86312.dir/CheckSymbolExists.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: D:/projects/Libpcap/libs/libpcap-1.10.1/../../version.h: No such file or directory
+    2 | #include <D:/projects/Libpcap/libs/libpcap-1.10.1/../../version.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+File D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <D:/projects/Libpcap/libs/libpcap-1.10.1/../../version.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef WINPCAP_PRODUCT_NAME
+  return ((int*)(&WINPCAP_PRODUCT_NAME))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the include file bitypes.h exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_d58b4 && [1/2] Building C object CMakeFiles/cmTC_d58b4.dir/CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_d58b4.dir/CheckIncludeFile.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe    -o CMakeFiles/cmTC_d58b4.dir/CheckIncludeFile.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: bitypes.h: No such file or directory
+    1 | #include <bitypes.h>
+      |          ^~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function strerror_r exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_1ef7d && [1/2] Building C object CMakeFiles/cmTC_1ef7d.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_1ef7d.exe
+FAILED: cmTC_1ef7d.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=strerror_r  CMakeFiles/cmTC_1ef7d.dir/CheckFunctionExists.c.obj -o cmTC_1ef7d.exe -Wl,--out-implib,libcmTC_1ef7d.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: CMakeFiles/cmTC_1ef7d.dir/CheckFunctionExists.c.obj:CheckFunctionExists.c:(.text+0x15): undefined reference to `strerror_r'
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function strlcpy exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_0bd84 && [1/2] Building C object CMakeFiles/cmTC_0bd84.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_0bd84.exe
+FAILED: cmTC_0bd84.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=strlcpy  CMakeFiles/cmTC_0bd84.dir/CheckFunctionExists.c.obj -o cmTC_0bd84.exe -Wl,--out-implib,libcmTC_0bd84.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: CMakeFiles/cmTC_0bd84.dir/CheckFunctionExists.c.obj:CheckFunctionExists.c:(.text+0x15): undefined reference to `strlcpy'
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function strlcat exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_5c5f8 && [1/2] Building C object CMakeFiles/cmTC_5c5f8.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_5c5f8.exe
+FAILED: cmTC_5c5f8.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=strlcat  CMakeFiles/cmTC_5c5f8.dir/CheckFunctionExists.c.obj -o cmTC_5c5f8.exe -Wl,--out-implib,libcmTC_5c5f8.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: CMakeFiles/cmTC_5c5f8.dir/CheckFunctionExists.c.obj:CheckFunctionExists.c:(.text+0x15): undefined reference to `strlcat'
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the getnetbyname_r exist failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_8e879 && [1/2] Building C object CMakeFiles/cmTC_8e879.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_8e879.dir/CheckSymbolExists.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe    -o CMakeFiles/cmTC_8e879.dir/CheckSymbolExists.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: netdb.h: No such file or directory
+    2 | #include <netdb.h>
+      |          ^~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+File D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <netdb.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getnetbyname_r
+  return ((int*)(&getnetbyname_r))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the getprotobyname_r exist failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_ae548 && [1/2] Building C object CMakeFiles/cmTC_ae548.dir/CheckSymbolExists.c.obj
+FAILED: CMakeFiles/cmTC_ae548.dir/CheckSymbolExists.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe    -o CMakeFiles/cmTC_ae548.dir/CheckSymbolExists.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: netdb.h: No such file or directory
+    2 | #include <netdb.h>
+      |          ^~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+File D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <netdb.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getprotobyname_r
+  return ((int*)(&getprotobyname_r))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining size of socklen_t failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_ae57e && [1/2] Building C object CMakeFiles/cmTC_ae57e.dir/SOCKLEN_T.c.obj
+FAILED: CMakeFiles/cmTC_ae57e.dir/SOCKLEN_T.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe    -o CMakeFiles/cmTC_ae57e.dir/SOCKLEN_T.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CheckTypeSize/SOCKLEN_T.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CheckTypeSize/SOCKLEN_T.c:28:22: error: 'socklen_t' undeclared here (not in a function); did you mean 'socket'?
+   28 | #define SIZE (sizeof(socklen_t))
+      |                      ^~~~~~~~~
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CheckTypeSize/SOCKLEN_T.c:28:22: note: in definition of macro 'SIZE'
+   28 | #define SIZE (sizeof(socklen_t))
+      |                      ^~~~~~~~~
+ninja: build stopped: subcommand failed.
+
+
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CheckTypeSize/SOCKLEN_T.c:
+#include <sys/types.h>
+#include <stdint.h>
+#include <stddef.h>
+#include "winsock2.h"
+
+
+#undef KEY
+#if defined(__i386)
+# define KEY '_','_','i','3','8','6'
+#elif defined(__x86_64)
+# define KEY '_','_','x','8','6','_','6','4'
+#elif defined(__PPC64__)
+# define KEY '_','_','P','P','C','6','4','_','_'
+#elif defined(__ppc64__)
+# define KEY '_','_','p','p','c','6','4','_','_'
+#elif defined(__PPC__)
+# define KEY '_','_','P','P','C','_','_'
+#elif defined(__ppc__)
+# define KEY '_','_','p','p','c','_','_'
+#elif defined(__aarch64__)
+# define KEY '_','_','a','a','r','c','h','6','4','_','_'
+#elif defined(__ARM_ARCH_7A__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','A','_','_'
+#elif defined(__ARM_ARCH_7S__)
+# define KEY '_','_','A','R','M','_','A','R','C','H','_','7','S','_','_'
+#endif
+
+#define SIZE (sizeof(socklen_t))
+static char info_size[] =  {'I', 'N', 'F', 'O', ':', 's','i','z','e','[',
+  ('0' + ((SIZE / 10000)%10)),
+  ('0' + ((SIZE / 1000)%10)),
+  ('0' + ((SIZE / 100)%10)),
+  ('0' + ((SIZE / 10)%10)),
+  ('0' +  (SIZE    % 10)),
+  ']',
+#ifdef KEY
+  ' ','k','e','y','[', KEY, ']',
+#endif
+  '\0'};
+
+#ifdef __CLASSIC_C__
+int main(argc, argv) int argc; char *argv[];
+#else
+int main(int argc, char *argv[])
+#endif
+{
+  int require = 0;
+  require += info_size[argc];
+  (void)argv;
+  return require;
+}
+
+
+Performing C SOURCE FILE Test HAVE_STRUCT_SOCKADDR_SA_LEN failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_15217 && [1/2] Building C object CMakeFiles/cmTC_15217.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_15217.dir/src.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DHAVE_STRUCT_SOCKADDR_SA_LEN   -o CMakeFiles/cmTC_15217.dir/src.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c: In function 'main':
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:6:38: error: 'struct sockaddr' has no member named 'sa_len'
+    6 |   (void)sizeof(((struct sockaddr *)0)->sa_len);
+      |                                      ^~
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+#include <winsock2.h>
+
+int main()
+{
+  (void)sizeof(((struct sockaddr *)0)->sa_len);
+  return 0;
+}
+
+Determining if the function ffs exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_6d948 && [1/2] Building C object CMakeFiles/cmTC_6d948.dir/CheckFunctionExists.c.obj
+<command-line>: warning: conflicting types for built-in function 'ffs'; expected 'int(int)' [-Wbuiltin-declaration-mismatch]
+C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/cmake/win/share/cmake-3.23/Modules/CheckFunctionExists.c:7:3: note: in expansion of macro 'CHECK_FUNCTION_EXISTS'
+    7 |   CHECK_FUNCTION_EXISTS(void);
+      |   ^~~~~~~~~~~~~~~~~~~~~
+[2/2] Linking C executable cmTC_6d948.exe
+FAILED: cmTC_6d948.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=ffs  CMakeFiles/cmTC_6d948.dir/CheckFunctionExists.c.obj -o cmTC_6d948.exe -Wl,--out-implib,libcmTC_6d948.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: CMakeFiles/cmTC_6d948.dir/CheckFunctionExists.c.obj:CheckFunctionExists.c:(.text+0x15): undefined reference to `ffs'
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function ether_hostton exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_e64ac && [1/2] Building C object CMakeFiles/cmTC_e64ac.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_e64ac.exe
+FAILED: cmTC_e64ac.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=ether_hostton  CMakeFiles/cmTC_e64ac.dir/CheckFunctionExists.c.obj -o cmTC_e64ac.exe -Wl,--out-implib,libcmTC_e64ac.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -lws2_32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: CMakeFiles/cmTC_e64ac.dir/CheckFunctionExists.c.obj:CheckFunctionExists.c:(.text+0x15): undefined reference to `ether_hostton'
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Performing C SOURCE FILE Test PCAP_SUPPORT_NETMAP failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_48536 && [1/2] Building C object CMakeFiles/cmTC_48536.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_48536.dir/src.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DPCAP_SUPPORT_NETMAP   -o CMakeFiles/cmTC_48536.dir/src.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:2:10: fatal error: net/netmap_user.h: No such file or directory
+    2 | #include <net/netmap_user.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#define NETMAP_WITH_LIBS
+#include <net/netmap_user.h>
+
+int
+main(void)
+{
+    return 0;
+}
+
+Determining if the function ibv_get_device_list exists in the ibverbs failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_ec106 && [1/2] Building C object CMakeFiles/cmTC_ec106.dir/CheckFunctionExists.c.obj
+[2/2] Linking C executable cmTC_ec106.exe
+FAILED: cmTC_ec106.exe 
+cmd.exe /C "cd . && C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DCHECK_FUNCTION_EXISTS=ibv_get_device_list  CMakeFiles/cmTC_ec106.dir/CheckFunctionExists.c.obj -o cmTC_ec106.exe -Wl,--out-implib,libcmTC_ec106.dll.a -Wl,--major-image-version,0,--minor-image-version,0  -libverbs  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 && cd ."
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin/ld.exe: cannot find -libverbs
+collect2.exe: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the include file msg.h exists failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_8241d && [1/2] Building C object CMakeFiles/cmTC_8241d.dir/CheckIncludeFile.c.obj
+FAILED: CMakeFiles/cmTC_8241d.dir/CheckIncludeFile.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe  -ID:/projects/Libpcap/libs/libpcap-1.10.1/../septel/INC  -o CMakeFiles/cmTC_8241d.dir/CheckIncludeFile.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: msg.h: No such file or directory
+    1 | #include <msg.h>
+      |          ^~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+
+Performing C SOURCE FILE Test HAVE_STRUCT_MSGHDR_MSG_CONTROL failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_6dd8d && [1/2] Building C object CMakeFiles/cmTC_6dd8d.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_6dd8d.dir/src.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DHAVE_STRUCT_MSGHDR_MSG_CONTROL -ID:/projects/Libpcap/libs/libpcap-1.10.1  -o CMakeFiles/cmTC_6dd8d.dir/src.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:3:10: fatal error: sys/socket.h: No such file or directory
+    3 | #include <sys/socket.h>
+      |          ^~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+#include <ftmacros.h>
+#include <sys/socket.h>
+
+int main()
+{
+  (void)sizeof(((struct msghdr *)0)->msg_control);
+  return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_STRUCT_MSGHDR_MSG_FLAGS failed with the following output:
+Change Dir: D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe cmTC_d305c && [1/2] Building C object CMakeFiles/cmTC_d305c.dir/src.c.obj
+FAILED: CMakeFiles/cmTC_d305c.dir/src.c.obj 
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\mingw\bin\gcc.exe -DHAVE_STRUCT_MSGHDR_MSG_FLAGS -ID:/projects/Libpcap/libs/libpcap-1.10.1  -o CMakeFiles/cmTC_d305c.dir/src.c.obj -c D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c
+D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:3:10: fatal error: sys/socket.h: No such file or directory
+    3 | #include <sys/socket.h>
+      |          ^~~~~~~~~~~~~~
+compilation terminated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+#include <ftmacros.h>
+#include <sys/socket.h>
+
+int main()
+{
+  (void)sizeof(((struct msghdr *)0)->msg_flags);
+  return 0;
+}
+

@@ -1,0 +1,140 @@
+C:\Users\lukas\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4167.35\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/ninja/win/ninja.exe -G Ninja -S D:\projects\Libpcap\libs\libpcap-1.10.1 -B D:\projects\Libpcap\libs\libpcap-1.10.1\cmake-build-debug
+CMake Deprecation Warning at CMakeLists.txt:16 (cmake_policy):
+  The OLD behavior for policy CMP0042 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+
+
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/mingw/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/mingw/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Checking C compiler flag -std=gnu99
+-- Performing Test std-gnu99
+-- Performing Test std-gnu99 - Success
+CMake Warning (dev) at C:/Users/lukas/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/bin/cmake/win/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (PACKET)
+  does not match the name of the calling package (Packet).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  cmake/Modules/FindPacket.cmake:100 (find_package_handle_standard_args)
+  CMakeLists.txt:306 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Could NOT find PACKET (missing: PACKET_INCLUDE_DIR PACKET_LIBRARY) 
+-- checking for Npcap's version.h
+-- Looking for WINPCAP_PRODUCT_NAME
+-- Looking for WINPCAP_PRODUCT_NAME - not found
+-- MISSING version.h
+-- Use STATIC runtime
+-- Looking for inttypes.h
+-- Looking for inttypes.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for bitypes.h
+-- Looking for bitypes.h - not found
+-- Performing Test HAVE___ATOMIC_LOAD_N
+-- Performing Test HAVE___ATOMIC_LOAD_N - Success
+-- Performing Test HAVE___ATOMIC_STORE_N
+-- Performing Test HAVE___ATOMIC_STORE_N - Success
+-- Looking for strerror
+-- Looking for strerror - found
+-- Looking for strerror_r
+-- Looking for strerror_r - not found
+-- Looking for _wcserror_s
+-- Looking for _wcserror_s - found
+-- Looking for vsnprintf
+-- Looking for vsnprintf - found
+-- Looking for snprintf
+-- Looking for snprintf - found
+-- Looking for strlcpy
+-- Looking for strlcpy - not found
+-- Looking for strlcat
+-- Looking for strlcat - not found
+-- Looking for asprintf
+-- Looking for asprintf - found
+-- Looking for vasprintf
+-- Looking for vasprintf - found
+-- Looking for strtok_r
+-- Looking for strtok_r - found
+-- Looking for getaddrinfo
+-- Looking for getaddrinfo - found
+-- Looking for getnetbyname_r
+-- Looking for getnetbyname_r - not found
+-- Looking for getprotobyname_r
+-- Looking for getprotobyname_r - not found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of struct sockaddr_storage
+-- Check size of struct sockaddr_storage - done
+-- Check size of socklen_t
+-- Check size of socklen_t - failed
+-- Performing Test HAVE_STRUCT_SOCKADDR_SA_LEN
+-- Performing Test HAVE_STRUCT_SOCKADDR_SA_LEN - Failed
+-- Looking for ffs
+-- Looking for ffs - not found
+-- Looking for ether_hostton
+-- Looking for ether_hostton - not found
+-- Support IPv6
+-- Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY OPENSSL_INCLUDE_DIR) 
+-- Packet capture mechanism type: null
+-- Performing Test PCAP_SUPPORT_NETMAP
+-- Performing Test PCAP_SUPPORT_NETMAP - Failed
+-- Executing Finddpdk
+-- Executing find_path
+-- Could NOT find dpdk (missing: dpdk_INCLUDE_DIRS) 
+-- Looking for ibv_get_device_list in ibverbs
+-- Looking for ibv_get_device_list in ibverbs - not found
+-- Could NOT find DAG (missing: DAG_INCLUDE_DIR DAG_LIBRARY DAGCONF_LIBRARY) 
+-- Looking for msg.h
+-- Looking for msg.h - not found
+-- Could NOT find SNF (missing: SNF_INCLUDE_DIR SNF_LIBRARY) 
+CMake Warning at CMakeLists.txt:1836 (find_package):
+  By not providing "FindAirPcap.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "AirPcap", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "AirPcap" with any
+  of the following names:
+
+    AirPcapConfig.cmake
+    airpcap-config.cmake
+
+  Add the installation prefix of "AirPcap" to CMAKE_PREFIX_PATH or set
+  "AirPcap_DIR" to a directory containing one of the above files.  If
+  "AirPcap" provides a separate development package or SDK, be sure it has
+  been installed.
+
+
+-- Could NOT find TC (missing: TC_INCLUDE_DIR TC_LIBRARY) 
+-- Performing Test HAVE_STRUCT_MSGHDR_MSG_CONTROL
+-- Performing Test HAVE_STRUCT_MSGHDR_MSG_CONTROL - Failed
+-- Performing Test HAVE_STRUCT_MSGHDR_MSG_FLAGS
+-- Performing Test HAVE_STRUCT_MSGHDR_MSG_FLAGS - Failed
+-- Checking C compiler flag -fvisibility=hidden
+-- Performing Test fvisibility-hidden
+-- Performing Test fvisibility-hidden - Success
+CMake Error at CMakeLists.txt:2064 (message):
+  Neither flex nor win_flex nor lex was found.
+
+
+-- Configuring incomplete, errors occurred!
+See also "D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "D:/projects/Libpcap/libs/libpcap-1.10.1/cmake-build-debug/CMakeFiles/CMakeError.log".

@@ -1,0 +1,6 @@
+https://wiki.wireshark.org/SampleCaptures:
+- chargen-udp.pcap
+
+https://packetlife.net/captures/
+- dhcp-auth.cap
+- DHCPv6.cap

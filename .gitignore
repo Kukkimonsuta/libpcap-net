@@ -1,0 +1,8 @@
+/src/**/bin/
+/src/**/obj/
+/tests/**/bin/
+/tests/**/obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+/libs/**/.idea

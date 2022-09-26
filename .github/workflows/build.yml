@@ -1,0 +1,42 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+        architecture: [x86, x64]
+        exclude:
+          - os: macos-latest
+            architecture: x86
+          - os: ubuntu-latest
+            architecture: x86
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install required packages (ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt install libpcap-dev
+    - name: Install required packages (macos)
+      if: matrix.os == 'macos-latest'
+      run: brew install libpcap
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 7.0.x
+        include-prerelease: true
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      # I have failed to find a way to install npcap silently, will revisit later
+      if: matrix.os != 'windows-latest'
+      run: dotnet test --no-build --verbosity normal

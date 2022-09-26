@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <RuntimeIdentifiers>linux-x64;osx-x64;win-x86;win-x64</RuntimeIdentifiers>
+        <NoWarn>$(NoWarn);CS8981</NoWarn>
+
+        <PackageId>Libpcap</PackageId>
+        <Description>ASP.NET Core middleware for basic authentication.</Description>
+        <PackageTags>libpcap; packet-capture</PackageTags>
+
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <IncludeSymbols>false</IncludeSymbols>
+    </PropertyGroup>
+
+    <!-- Attempt to determine for which runtime we're building if it wasn't specified -->
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == ''">
+        <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('Linux')) AND '$([System.Environment]::Is64BitOperatingSystem)' == 'True'">linux-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('OSX')) AND '$([System.Environment]::Is64BitOperatingSystem)' == 'True'">osx-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Environment]::Is64BitOperatingSystem)' == 'True'">win-x64</RuntimeIdentifier>
+        <RuntimeIdentifier Condition="$([MSBuild]::IsOSPlatform('Windows')) AND '$([System.Environment]::Is64BitOperatingSystem)' == 'False'">win-x86</RuntimeIdentifier>
+    </PropertyGroup>
+
+    <!-- Define constant indicating for which runtime we're building -->
+    <PropertyGroup>
+        <DefineConstants Condition="'$(RuntimeIdentifier)' == 'linux-x64'">$(DefineConstants);LINUX_X64</DefineConstants>
+        <DefineConstants Condition="'$(RuntimeIdentifier)' == 'osx-x64'">$(DefineConstants);OSX_X64</DefineConstants>
+        <DefineConstants Condition="'$(RuntimeIdentifier)' == 'win-x64'">$(DefineConstants);WIN_X64</DefineConstants>
+        <DefineConstants Condition="'$(RuntimeIdentifier)' == 'win-x86'">$(DefineConstants);WIN_X86</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Build artifacts for each supported runtime that isn't currently being built -->
+    <Target Name="LibpcapBuildForEachRuntimeIdentifier" BeforeTargets="AfterBuild" Condition="'$(LibpcapIsBuildingExtraRuntime)' != 'True'">
+        <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=linux-x64;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'linux-x64'" />
+        <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=osx-x64;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'osx-x64'" />
+        <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=win-x86;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'win-x86'" />
+        <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=win-x64;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'win-x64'" />
+
+        <!-- Include built artifacts -->
+        <ItemGroup>
+            <Content Include="bin/$(Configuration)/**/*.dll" Pack="true" PackagePath="lib" />
+            <Content Include="bin/$(Configuration)/**/*.pdb" Pack="true" PackagePath="lib" />
+        </ItemGroup>
+    </Target>
+
+</Project>
