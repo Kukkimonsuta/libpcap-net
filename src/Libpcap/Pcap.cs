@@ -104,7 +104,7 @@ public abstract unsafe class Pcap : IDisposable
             CheckDisposed();
 
             var result = LibpcapNative.pcap_set_datalink(_pcap, (int)value);
-            PcapException.ThrowIfNonZeroStatus(result, "pcap_set_datalink");
+            PcapException.ThrowIfNonZeroStatus(result, "pcap_set_datalink", _pcap);
         }
     }
 
@@ -120,27 +120,28 @@ public abstract unsafe class Pcap : IDisposable
 
     // TODO: https://www.tcpdump.org/manpages/pcap_setfilter.3pcap.html
 
-    public PcapActivateResult Activate(bool throwOnError = true, bool throwOnWarning = false)
+    private PcapFilter? _filter;
+    public string? Filter
     {
-        var result = (PcapActivateResult)LibpcapNative.pcap_activate(_pcap);
-
-        if (throwOnError && result < 0)
+        get
         {
-            var errorBuffer = LibpcapNative.pcap_geterr(_pcap);
-            var errorMessage = Marshal.PtrToStringUTF8((IntPtr)errorBuffer) ?? result.ToString();
+            CheckDisposed();
 
-            throw new PcapException("pcap_activate", errorMessage);
+            return _filter?.Expression;
         }
-
-        if (throwOnWarning && result > 0)
+        set
         {
-            var warningBuffer = LibpcapNative.pcap_geterr(_pcap);
-            var warningMessage = Marshal.PtrToStringUTF8((IntPtr)warningBuffer) ?? result.ToString();
+            CheckDisposed();
 
-            throw new PcapException("pcap_activate", warningMessage);
+            _filter?.Dispose();
+
+            var filter = PcapFilter.Create(this, value);
+
+            var result = LibpcapNative.pcap_setfilter(_pcap, filter.pointer);
+            PcapException.ThrowIfNonZeroStatus(result, "pcap_setfilter", _pcap);
+
+            _filter = filter;
         }
-
-        return result;
     }
 
     public void Loop(int count, PacketCallback callback)
@@ -501,6 +502,29 @@ public unsafe class DevicePcap : Pcap
             result = LibpcapNative.pcap_setnonblock(_pcap, value ? 1 : 0, errorBuffer);
             PcapException.ThrowIfNonZero(result, "pcap_setnonblock", errorBuffer);
         }
+    }
+
+    public PcapActivateResult Activate(bool throwOnError = true, bool throwOnWarning = false)
+    {
+        var result = (PcapActivateResult)LibpcapNative.pcap_activate(_pcap);
+
+        if (throwOnError && result < 0)
+        {
+            var errorBuffer = LibpcapNative.pcap_geterr(_pcap);
+            var errorMessage = Marshal.PtrToStringUTF8((IntPtr)errorBuffer) ?? result.ToString();
+
+            throw new PcapException("pcap_activate", errorMessage);
+        }
+
+        if (throwOnWarning && result > 0)
+        {
+            var warningBuffer = LibpcapNative.pcap_geterr(_pcap);
+            var warningMessage = Marshal.PtrToStringUTF8((IntPtr)warningBuffer) ?? result.ToString();
+
+            throw new PcapException("pcap_activate", warningMessage);
+        }
+
+        return result;
     }
 }
 

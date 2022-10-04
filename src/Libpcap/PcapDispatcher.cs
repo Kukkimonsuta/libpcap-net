@@ -26,6 +26,27 @@ public unsafe class PcapDispatcher : IDisposable
         set => _context.Callback = value;
     }
 
+    private string? _filter;
+    public string? Filter
+    {
+        get
+        {
+            CheckDisposed();
+
+            return _filter;
+        }
+        set
+        {
+            CheckDisposed();
+
+            foreach (var pcap in _pcaps)
+            {
+                pcap.Filter = value;
+            }
+            _filter = value;
+        }
+    }
+
     private int _rotateAfter;
     public int RotateAfter
     {
@@ -72,6 +93,10 @@ public unsafe class PcapDispatcher : IDisposable
 
             pcap.Activate();
             pcap.NonBlocking = true;
+            if (_filter != null)
+            {
+                pcap.Filter = _filter;
+            }
 
             _pcaps.Add(pcap);
         }
@@ -93,6 +118,10 @@ public unsafe class PcapDispatcher : IDisposable
         try
         {
             configure?.Invoke(pcap);
+            if (_filter != null)
+            {
+                pcap.Filter = _filter;
+            }
 
             _pcaps.Add(pcap);
         }

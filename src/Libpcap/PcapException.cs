@@ -19,11 +19,6 @@ public class PcapException : Exception
     {
     }
 
-    public static unsafe void ThrowStatus(int result, string method)
-    {
-        throw new PcapException(method, LibpcapNative.pcap_statustostr(result));
-    }
-
     public static unsafe void ThrowIfNegativeStatus(int result, string method)
     {
         if (result < 0)
@@ -32,19 +27,18 @@ public class PcapException : Exception
         }
     }
 
-    public static void ThrowIfNegative(int result, string method, string errorMessage)
+    public static unsafe void ThrowIfNonZeroStatus(int result, string method, Pcap pcap)
     {
-        if (result < 0)
-        {
-            throw new PcapException(method, errorMessage);
-        }
+        ThrowIfNonZeroStatus(result, method, pcap.Pointer);
     }
 
-    public static unsafe void ThrowIfNonZeroStatus(int result, string method)
+    internal static unsafe void ThrowIfNonZeroStatus(int result, string method, pcap* pcap)
     {
         if (result != 0)
         {
-            throw new PcapException(method, LibpcapNative.pcap_statustostr(result));
+            var errorBuffer = result == LibpcapNative.PCAP_ERROR ? LibpcapNative.pcap_geterr(pcap) : LibpcapNative.pcap_statustostr(result);
+
+            throw new PcapException(method, errorBuffer);
         }
     }
 
