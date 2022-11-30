@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Text;
 using Libpcap.Native;
@@ -7,7 +6,7 @@ namespace Libpcap;
 
 public unsafe class PcapFilter : IDisposable
 {
-    internal bpf_program* pointer;
+    internal bpf_program* Pointer;
 
     public string Expression { get; }
 
@@ -15,7 +14,7 @@ public unsafe class PcapFilter : IDisposable
     {
         Expression = expression ?? throw new ArgumentNullException(nameof(expression));
 
-        pointer = (bpf_program*)Marshal.AllocHGlobal(sizeof(bpf_program));
+        Pointer = (bpf_program*)Marshal.AllocHGlobal(sizeof(bpf_program));
     }
 
     ~PcapFilter()
@@ -23,10 +22,10 @@ public unsafe class PcapFilter : IDisposable
         Dispose(false);
     }
 
-    #region
+    #region IDisposable
 
     // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-    internal bool IsDisposed => pointer == null;
+    internal bool IsDisposed => Pointer == null;
 
     internal void CheckDisposed()
     {
@@ -36,11 +35,11 @@ public unsafe class PcapFilter : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        if (pointer != null)
+        if (Pointer != null)
         {
-            LibpcapNative.pcap_freecode(pointer);
-            Marshal.FreeHGlobal((IntPtr)pointer);
-            pointer = null;
+            LibpcapNative.pcap_freecode(Pointer);
+            Marshal.FreeHGlobal((IntPtr)Pointer);
+            Pointer = null;
         }
 
         if (disposing)
@@ -72,7 +71,7 @@ public unsafe class PcapFilter : IDisposable
 
         fixed (byte* pExpressionBuffer = expressionBuffer)
         {
-            var result = LibpcapNative.pcap_compile(pcap.Pointer, filter.pointer, (sbyte*)pExpressionBuffer, optimize ? 1 : 0, netmask ?? LibpcapNative.PCAP_NETMASK_UNKNOWN);
+            var result = LibpcapNative.pcap_compile(pcap.Pointer, filter.Pointer, (sbyte*)pExpressionBuffer, optimize ? 1 : 0, netmask ?? LibpcapNative.PCAP_NETMASK_UNKNOWN);
             PcapException.ThrowIfNonZeroStatus(result, "pcap_compile", pcap);
         }
 

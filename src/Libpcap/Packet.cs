@@ -28,7 +28,7 @@ public readonly unsafe ref struct Packet
     public int DeclaredLength => (int)_header->len;
 
     /// <summary>
-    /// Captured packet length. This is should always be lower or equal to <see cref="Pcap.SnapshotLength" />.
+    /// Captured packet length. This is should always be lower or equal to <see cref="Pcap.DeclaredLength" />.
     /// </summary>
     public int CapturedLength => (int)_header->caplen;
 

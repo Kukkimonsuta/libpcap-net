@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Libpcap.Native;
 
@@ -182,6 +181,8 @@ public unsafe class PcapDispatcher : IDisposable
             }
 
             var pcap = _pcaps[_pcapIndex];
+            pcap.CheckDisposed();
+
             _context.Pcap = pcap;
             _context.Count = 0;
 

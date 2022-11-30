@@ -1,4 +1,5 @@
 using Libpcap.Native;
+// ReSharper disable InconsistentNaming
 
 namespace Libpcap;
 

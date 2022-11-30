@@ -11,13 +11,13 @@ namespace Libpcap;
 
 public abstract unsafe class Pcap : IDisposable
 {
-    internal pcap* _pcap;
+    internal pcap* Pointer;
 
-    internal Pcap([DisallowNull] pcap* pcap)
+    internal Pcap([DisallowNull] pcap* pointer)
     {
-        if (pcap == null)
-            throw new ArgumentNullException(nameof(pcap));
-        _pcap = pcap;
+        if (pointer == null)
+            throw new ArgumentNullException(nameof(pointer));
+        Pointer = pointer;
     }
 
     ~Pcap()
@@ -26,16 +26,6 @@ public abstract unsafe class Pcap : IDisposable
     }
 
     public abstract string Name { get; }
-
-    internal pcap* Pointer
-    {
-        get
-        {
-            CheckDisposed();
-
-            return _pcap;
-        }
-    }
 
     private bool _immediateMode;
 
@@ -54,7 +44,7 @@ public abstract unsafe class Pcap : IDisposable
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_immediate_mode(_pcap, value ? 1 : 0);
+            var result = LibpcapNative.pcap_set_immediate_mode(Pointer, value ? 1 : 0);
             PcapException.ThrowIfNonZero(result, "pcap_set_immediate_mode", LibpcapNative.pcap_statustostr(result));
 
             _immediateMode = value;
@@ -78,7 +68,7 @@ public abstract unsafe class Pcap : IDisposable
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_buffer_size(_pcap, value);
+            var result = LibpcapNative.pcap_set_buffer_size(Pointer, value);
             PcapException.ThrowIfNonZero(result, "pcap_set_buffer_size", LibpcapNative.pcap_statustostr(result));
 
             _bufferSize = value;
@@ -94,7 +84,7 @@ public abstract unsafe class Pcap : IDisposable
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_datalink(_pcap);
+            var result = LibpcapNative.pcap_datalink(Pointer);
             PcapException.ThrowIfNegativeStatus(result, "pcap_datalink");
 
             return (PcapDataLink)result;
@@ -103,8 +93,8 @@ public abstract unsafe class Pcap : IDisposable
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_datalink(_pcap, (int)value);
-            PcapException.ThrowIfNonZeroStatus(result, "pcap_set_datalink", _pcap);
+            var result = LibpcapNative.pcap_set_datalink(Pointer, (int)value);
+            PcapException.ThrowIfNonZeroStatus(result, "pcap_set_datalink", Pointer);
         }
     }
 
@@ -137,8 +127,8 @@ public abstract unsafe class Pcap : IDisposable
 
             var filter = PcapFilter.Create(this, value);
 
-            var result = LibpcapNative.pcap_setfilter(_pcap, filter.pointer);
-            PcapException.ThrowIfNonZeroStatus(result, "pcap_setfilter", _pcap);
+            var result = LibpcapNative.pcap_setfilter(Pointer, filter.Pointer);
+            PcapException.ThrowIfNonZeroStatus(result, "pcap_setfilter", Pointer);
 
             _filter = filter;
         }
@@ -155,7 +145,7 @@ public abstract unsafe class Pcap : IDisposable
         var contextHandle = GCHandle.Alloc(context);
         try
         {
-            var result = LibpcapNative.pcap_loop(_pcap, count, &DispatchHelper.PacketCallback, (byte*)GCHandle.ToIntPtr(contextHandle));
+            var result = LibpcapNative.pcap_loop(Pointer, count, &DispatchHelper.PacketCallback, (byte*)GCHandle.ToIntPtr(contextHandle));
             if (result == LibpcapNative.PCAP_ERROR_BREAK)
             {
                 return;
@@ -180,7 +170,7 @@ public abstract unsafe class Pcap : IDisposable
         var contextHandle = GCHandle.Alloc(context);
         try
         {
-            var result = LibpcapNative.pcap_dispatch(_pcap, count, &DispatchHelper.PacketCallback, (byte*)GCHandle.ToIntPtr(contextHandle));
+            var result = LibpcapNative.pcap_dispatch(Pointer, count, &DispatchHelper.PacketCallback, (byte*)GCHandle.ToIntPtr(contextHandle));
             if (result == LibpcapNative.PCAP_ERROR_BREAK)
             {
                 return 0;
@@ -199,7 +189,7 @@ public abstract unsafe class Pcap : IDisposable
     #region IDisposable
 
     // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-    internal bool IsDisposed => _pcap == null;
+    internal bool IsDisposed => Pointer == null;
 
     internal void CheckDisposed()
     {
@@ -209,10 +199,10 @@ public abstract unsafe class Pcap : IDisposable
 
     protected virtual void Dispose(bool disposing)
     {
-        if (_pcap != null)
+        if (Pointer != null)
         {
-            LibpcapNative.pcap_close(_pcap);
-            _pcap = null;
+            LibpcapNative.pcap_close(Pointer);
+            Pointer = null;
         }
 
         if (disposing)
@@ -382,8 +372,8 @@ public unsafe class DevicePcap : Pcap
     public PcapDevice Device { get; }
     public override string Name => $"Device: {Device.Description ?? Device.Name}";
 
-    internal DevicePcap(PcapDevice device, pcap* pcap)
-        : base(pcap)
+    internal DevicePcap(PcapDevice device, pcap* pointer)
+        : base(pointer)
     {
         Device = device ?? throw new ArgumentNullException(nameof(device));
 
@@ -411,7 +401,7 @@ public unsafe class DevicePcap : Pcap
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_snaplen(_pcap, value);
+            var result = LibpcapNative.pcap_set_snaplen(Pointer, value);
             PcapException.ThrowIfNonZero(result, "pcap_set_snaplen", LibpcapNative.pcap_statustostr(result));
 
             _snapshotLength = value;
@@ -435,7 +425,7 @@ public unsafe class DevicePcap : Pcap
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_promisc(_pcap, value ? 1 : 0);
+            var result = LibpcapNative.pcap_set_promisc(Pointer, value ? 1 : 0);
             PcapException.ThrowIfNonZero(result, "pcap_set_promisc", LibpcapNative.pcap_statustostr(result));
 
             _promiscuousMode = value;
@@ -459,7 +449,7 @@ public unsafe class DevicePcap : Pcap
         {
             CheckDisposed();
 
-            var result = LibpcapNative.pcap_set_timeout(_pcap, value);
+            var result = LibpcapNative.pcap_set_timeout(Pointer, value);
             PcapException.ThrowIfNonZero(result, "pcap_set_timeout", LibpcapNative.pcap_statustostr(result));
 
             _timeout = value;
@@ -478,7 +468,7 @@ public unsafe class DevicePcap : Pcap
             var result = 0;
             var errorBuffer = stackalloc sbyte[LibpcapNative.PCAP_ERRBUF_SIZE];
 
-            result = LibpcapNative.pcap_getnonblock(_pcap, errorBuffer);
+            result = LibpcapNative.pcap_getnonblock(Pointer, errorBuffer);
 
             if (result == 0)
             {
@@ -499,18 +489,18 @@ public unsafe class DevicePcap : Pcap
             var result = 0;
             var errorBuffer = stackalloc sbyte[LibpcapNative.PCAP_ERRBUF_SIZE];
 
-            result = LibpcapNative.pcap_setnonblock(_pcap, value ? 1 : 0, errorBuffer);
+            result = LibpcapNative.pcap_setnonblock(Pointer, value ? 1 : 0, errorBuffer);
             PcapException.ThrowIfNonZero(result, "pcap_setnonblock", errorBuffer);
         }
     }
 
     public PcapActivateResult Activate(bool throwOnError = true, bool throwOnWarning = false)
     {
-        var result = (PcapActivateResult)LibpcapNative.pcap_activate(_pcap);
+        var result = (PcapActivateResult)LibpcapNative.pcap_activate(Pointer);
 
         if (throwOnError && result < 0)
         {
-            var errorBuffer = LibpcapNative.pcap_geterr(_pcap);
+            var errorBuffer = LibpcapNative.pcap_geterr(Pointer);
             var errorMessage = Marshal.PtrToStringUTF8((IntPtr)errorBuffer) ?? result.ToString();
 
             throw new PcapException("pcap_activate", errorMessage);
@@ -518,7 +508,7 @@ public unsafe class DevicePcap : Pcap
 
         if (throwOnWarning && result > 0)
         {
-            var warningBuffer = LibpcapNative.pcap_geterr(_pcap);
+            var warningBuffer = LibpcapNative.pcap_geterr(Pointer);
             var warningMessage = Marshal.PtrToStringUTF8((IntPtr)warningBuffer) ?? result.ToString();
 
             throw new PcapException("pcap_activate", warningMessage);
@@ -533,8 +523,8 @@ public class FileReadPcap : Pcap
     public string Path { get; }
     public override string Name => $"File (reading {Path})";
 
-    internal unsafe FileReadPcap(pcap* pcap, string path)
-        : base(pcap)
+    internal unsafe FileReadPcap(pcap* pointer, string path)
+        : base(pointer)
     {
         Path = path ?? throw new ArgumentNullException(nameof(path));
     }
@@ -546,8 +536,8 @@ public unsafe class FileWritePcap : Pcap
     public override string Name => $"File (writing {Path})";
     private pcap_dumper* _dumper;
 
-    internal FileWritePcap(pcap* pcap, string path, [DisallowNull] pcap_dumper* dumper)
-        : base(pcap)
+    internal FileWritePcap(pcap* pointer, string path, [DisallowNull] pcap_dumper* dumper)
+        : base(pointer)
     {
         Path = path ?? throw new ArgumentNullException(nameof(path));
         if (dumper == null)

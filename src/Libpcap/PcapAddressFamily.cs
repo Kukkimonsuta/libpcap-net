@@ -1,3 +1,5 @@
+// ReSharper disable InconsistentNaming
+
 namespace Libpcap;
 
 public enum PcapAddressFamily

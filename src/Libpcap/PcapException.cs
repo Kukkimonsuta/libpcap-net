@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using System.Text;
 using Libpcap.Native;
 
 namespace Libpcap;
@@ -36,9 +35,25 @@ public class PcapException : Exception
     {
         if (result != 0)
         {
-            var errorBuffer = result == LibpcapNative.PCAP_ERROR ? LibpcapNative.pcap_geterr(pcap) : LibpcapNative.pcap_statustostr(result);
+            var isError = result == LibpcapNative.PCAP_ERROR;
 
-            throw new PcapException(method, errorBuffer);
+            if (isError)
+            {
+                if (pcap == null)
+                {
+                    throw new PcapException(method, "Unknown error");
+                }
+
+                var errorBuffer = LibpcapNative.pcap_geterr(pcap);
+
+                throw new PcapException(method, errorBuffer);
+            }
+            else
+            {
+                var errorBuffer = LibpcapNative.pcap_statustostr(result);
+
+                throw new PcapException(method, errorBuffer);
+            }
         }
     }
 
