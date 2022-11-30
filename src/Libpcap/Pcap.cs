@@ -225,6 +225,9 @@ public abstract unsafe class Pcap : IDisposable
 
     static Pcap()
     {
+#if REFERENCE_ASSEMBLY
+        throw new PlatformNotSupportedException();
+#else
         // documentation says it's available since 1.9.0, but in reality it seem to be since 1.10.0
         if (Version >= Version_1_10_0)
         {
@@ -234,6 +237,7 @@ public abstract unsafe class Pcap : IDisposable
             result = LibpcapNative.pcap_init(LibpcapNative.PCAP_CHAR_ENC_UTF_8, errorBuffer);
             PcapException.ThrowIfNonZero(result, "pcap_init", errorBuffer);
         }
+#endif
     }
 
     private static string? _versionString;

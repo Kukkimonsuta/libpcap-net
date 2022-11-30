@@ -23,7 +23,7 @@ public readonly unsafe ref struct Packet
     public DateTime Timestamp =>
 #if REFERENCE_ASSEMBLY
         // this is just placeholder for reference assemblies
-        default;
+        throw new PlatformNotSupportedException();
 #else
         DateTime.UnixEpoch.AddSeconds(_header->ts.tv_sec).AddMicroseconds(_header->ts.tv_usec);
 #endif

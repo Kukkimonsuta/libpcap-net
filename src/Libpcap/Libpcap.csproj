@@ -16,9 +16,8 @@
     <!-- We're building a reference assembly -->
     <PropertyGroup Condition="'$(LibpcapIsBuildingReferenceAssembly)' == 'True'">
         <DefineConstants>$(DefineConstants);REFERENCE_ASSEMBLY</DefineConstants>
-        <ProduceOnlyReferenceAssembly>true</ProduceOnlyReferenceAssembly>
-        <Deterministic>true</Deterministic>
-        <IsPackable>false</IsPackable>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+        <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
     </PropertyGroup>
 
     <!-- Attempt to determine for which runtime we're building if it wasn't specified -->
@@ -49,8 +48,10 @@
     <Target Name="LibpcapIncludeBuiltArtifacts" BeforeTargets="_GetPackageFiles"> <!-- Is there a better target? GenerateNuspecDependsOn seems to be too late -->
         <!-- Include built artifacts -->
         <ItemGroup>
-            <Content Include="bin/$(Configuration)/net7.0/*.dll" Pack="true" PackagePath="ref" />
+            <Content Include="bin/$(Configuration)/net7.0/ref/*.dll" Pack="true" PackagePath="ref" />
+
             <Content Include="bin/$(Configuration)/net7.0/*.dll" Pack="true" PackagePath="lib/net7.0" />
+            <Content Include="bin/$(Configuration)/net7.0/*.pdb" Pack="true" PackagePath="lib/net7.0" />
 
             <Content Include="bin/$(Configuration)/net7.0/linux-x64/*.dll" Pack="true" PackagePath="runtimes/linux-x64/lib/net7.0" />
             <Content Include="bin/$(Configuration)/net7.0/linux-x64/*.pdb" Pack="true" PackagePath="runtimes/linux-x64/lib/net7.0" />
