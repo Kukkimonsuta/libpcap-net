@@ -35,7 +35,9 @@
         <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=osx-x64;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'osx-x64'" />
         <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=win-x86;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'win-x86'" />
         <MSBuild Projects="../Libpcap/Libpcap.csproj" Targets="Build" Properties="RuntimeIdentifier=win-x64;LibpcapIsBuildingExtraRuntime=True" Condition="'$(RuntimeIdentifier)' != 'win-x64'" />
-
+    </Target>
+    
+    <Target Name="LibpcapIncludeBuiltArtifacts" BeforeTargets="_GetPackageFiles"> <!-- Is there a better target? GenerateNuspecDependsOn seems to be too late -->
         <!-- Include built artifacts -->
         <ItemGroup>
             <Content Include="bin/$(Configuration)/**/*.dll" Pack="true" PackagePath="lib" />
