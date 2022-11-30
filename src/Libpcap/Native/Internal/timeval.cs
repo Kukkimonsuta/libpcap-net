@@ -18,6 +18,7 @@ public struct timeval
     public long tv_sec;
 #elif LINUX_X64
     public long tv_sec;
+#elif REFERENCE_ASSEMBLY
 #else
     #error Unsupported platform.
 #endif
@@ -31,6 +32,7 @@ public struct timeval
     public int tv_usec;
 #elif LINUX_X64
     public long tv_usec;
+#elif REFERENCE_ASSEMBLY
 #else
     #error Unsupported platform.
 #endif

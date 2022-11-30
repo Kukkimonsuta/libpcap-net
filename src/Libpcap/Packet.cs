@@ -20,7 +20,13 @@ public readonly unsafe ref struct Packet
     internal pcap_pkthdr* HeaderPointer => _header;
     internal byte* DataPointer => _data;
 
-    public DateTime Timestamp => DateTime.UnixEpoch.AddSeconds(_header->ts.tv_sec).AddMicroseconds(_header->ts.tv_usec);
+    public DateTime Timestamp =>
+#if REFERENCE_ASSEMBLY
+        // this is just placeholder for reference assemblies
+        default;
+#else
+        DateTime.UnixEpoch.AddSeconds(_header->ts.tv_sec).AddMicroseconds(_header->ts.tv_usec);
+#endif
 
     /// <summary>
     /// Declared packet length.
