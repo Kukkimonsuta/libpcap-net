@@ -1,8 +1,18 @@
+# artefacts
 /src/**/bin/
 /src/**/obj/
 /tests/**/bin/
 /tests/**/obj/
+/publish
+
+# nuget
 /packages/
+
+# resharper
+/*.DotSettings.user
 riderModule.iml
 /_ReSharper.Caches/
 /libs/**/.idea
+
+# visual studio
+/.vs

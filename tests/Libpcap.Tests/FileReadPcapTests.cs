@@ -97,4 +97,35 @@ public class FileReadPcapTests
         Assert.Equal(15, reportedCount);
         Assert.Equal(reportedCount, actualCount);
     }
+
+    [Fact]
+    public void Can_read_pcap_file_icmp()
+    {
+        var reportedCount = 0;
+        var actualCount = 0;
+
+        using var pcap = Pcap.OpenFileRead("Resources/ICMP_across_dot1q.cap");
+        while (true)
+        {
+            var dispatched = pcap.Dispatch(1, (Pcap pcap, ref Packet packet) =>
+            {
+                Assert.NotNull(pcap);
+                Assert.Equal(PcapDataLink.DLT_EN10MB, pcap.DataLink);
+                Assert.Equal(packet.DeclaredLength, packet.CapturedLength);
+
+                _testOutputHelper.WriteLine($"Packet Pcap={pcap.Name} DataLink={pcap.DataLink} Declared={packet.DeclaredLength} Captured={packet.CapturedLength}");
+
+                actualCount += 1;
+            });
+            if (dispatched <= 0)
+            {
+                break;
+            }
+
+            reportedCount += dispatched;
+        }
+
+        Assert.Equal(15, reportedCount);
+        Assert.Equal(reportedCount, actualCount);
+    }
 }

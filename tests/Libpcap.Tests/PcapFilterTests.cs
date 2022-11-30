@@ -86,7 +86,6 @@ public class PcapFilterTests
         dispatcher.OpenFile("Resources/dhcp-auth.cap");
         dispatcher.OpenFile("Resources/chargen-udp.pcap");
 
-
         while (true)
         {
             var dispatched = dispatcher.Dispatch(1111);
