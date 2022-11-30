@@ -14,7 +14,7 @@ public readonly unsafe ref struct Packet
         _header = header;
         _data = data;
 
-        Data = new Span<byte>(data, CapturedLength);
+        Data = new ReadOnlySpan<byte>(data, CapturedLength);
     }
 
     internal pcap_pkthdr* HeaderPointer => _header;
@@ -32,7 +32,7 @@ public readonly unsafe ref struct Packet
     /// </summary>
     public int CapturedLength => (int)_header->caplen;
 
-    public Span<byte> Data { get; }
+    public ReadOnlySpan<byte> Data { get; }
 
     public byte this[int index]
     {

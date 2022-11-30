@@ -68,7 +68,7 @@ public unsafe class PcapDispatcher : IDisposable
     /// </summary>
     /// <param name="callback">Method to be called when packet is received.</param>
     /// <param name="rotateAfter">Continue with next device after this many packets even if it could possibly return more.</param>
-    public PcapDispatcher(PacketCallback callback, int rotateAfter = 50)
+    public PcapDispatcher(PacketCallback callback, int rotateAfter = 10)
     {
         Callback = callback ?? throw new ArgumentNullException(nameof(callback));
         if (rotateAfter <= 0)
