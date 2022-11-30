@@ -6,7 +6,7 @@
         <NoWarn>$(NoWarn);CS8981</NoWarn>
 
         <PackageId>Libpcap</PackageId>
-        <Description>ASP.NET Core middleware for basic authentication.</Description>
+        <Description>Libpcap/Npcap wrapper for .NET.</Description>
         <PackageTags>libpcap; packet-capture</PackageTags>
 
         <IncludeBuildOutput>false</IncludeBuildOutput>
