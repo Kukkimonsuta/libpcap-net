@@ -50,6 +50,7 @@
         <!-- Include built artifacts -->
         <ItemGroup>
             <Content Include="bin/$(Configuration)/net7.0/*.dll" Pack="true" PackagePath="ref" />
+            <Content Include="bin/$(Configuration)/net7.0/*.dll" Pack="true" PackagePath="lib/net7.0" />
 
             <Content Include="bin/$(Configuration)/net7.0/linux-x64/*.dll" Pack="true" PackagePath="runtimes/linux-x64/lib/net7.0" />
             <Content Include="bin/$(Configuration)/net7.0/linux-x64/*.pdb" Pack="true" PackagePath="runtimes/linux-x64/lib/net7.0" />
