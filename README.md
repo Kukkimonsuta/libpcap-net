@@ -6,6 +6,8 @@ Libpcap/Npcap wrapper for .NET.
 
 For linux/mac libpcap ( https://www.tcpdump.org/ ), for windows npcap ( https://npcap.com/ ). These libraries are not shipped within the package, they are expected to be present on the system.
 
+Special thank you to [Npcap](https://npcap.com/) for providing OEM installer for CI testing ❤️
+
 ## Usage - listen to network
 
 ```csharp
