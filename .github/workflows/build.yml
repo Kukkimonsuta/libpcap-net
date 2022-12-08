@@ -27,6 +27,14 @@ jobs:
     - name: Install required packages (macos)
       if: matrix.os == 'macos-latest'
       run: brew install libpcap
+    - name: Install required packages (windows)
+      env:
+        NPCAP_INSTALLER: ${{ secrets.NPCAP_INSTALLER }}
+      if: ${{ matrix.os == 'windows-latest' && env.NPCAP_INSTALLER != '' }}
+      run: |
+        Invoke-WebRequest -Uri $Env:NPCAP_INSTALLER -OutFile ~/npcap-installer.exe
+        & ~/npcap-installer.exe /S
+      shell: powershell
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -37,6 +45,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      # I have failed to find a way to install npcap silently, will revisit later
-      if: matrix.os != 'windows-latest'
+      env:
+        NPCAP_INSTALLER: ${{ secrets.NPCAP_INSTALLER }}
+      if: ${{ matrix.os != 'windows-latest' || env.NPCAP_INSTALLER != '' }}
       run: dotnet test --no-build --verbosity normal
